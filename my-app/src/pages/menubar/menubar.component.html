@@ -1,9 +1,9 @@
 <mat-toolbar class="toolbar">
     <div class="buttonContainer">
-        <button mat-button>
+        <button class="menuButton" mat-button  routerLinkActive="active" #rlaUsers="routerLinkActive">
             <span routerLink="/users">Users</span>
         </button>
-        <button mat-button>
+        <button class="menuButton" mat-button  routerLinkActive="active" #rlaHome="routerLinkActive">
             <span routerLink="/home">Home</span>
         </button>
     </div>

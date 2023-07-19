@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiCallServices } from 'src/services/api-call-services';
 
 @Component({
   selector: 'app-users',
@@ -9,18 +9,17 @@ import { HttpClient } from '@angular/common/http';
 export class UsersComponent implements OnInit {
   users: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiCallServices: ApiCallServices) { }
 
   ngOnInit() {
     this.getUsersData();
   }
 
   getUsersData() {
-    const apiUrl = 'https://random-data-api.com/api/v2/users?size=20&is_xml=true';
-    this.http.get<any[]>(apiUrl).subscribe(
+    this.apiCallServices.getUsersData().subscribe(
       (response) => {
-        this.users =response
-        console.log(this.users)
+        this.users = response;
+        console.log(this.users);
       },
       (error) => {
         console.error('Hiba történt az API hívás során:', error);
