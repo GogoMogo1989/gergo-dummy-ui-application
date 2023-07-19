@@ -12,21 +12,16 @@ import { UsersComponent } from 'src/pages/users/users.component';
 import { HomeComponent } from 'src/pages/home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenubarComponent,
-    UsersComponent,
-    HomeComponent
-  ],
+  declarations: [AppComponent, MenubarComponent, UsersComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
     HttpClientModule,
-    AgGridModule
+    AgGridModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

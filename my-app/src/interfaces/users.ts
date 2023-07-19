@@ -4,7 +4,7 @@ export class Users {
   username: string | undefined;
   email: string | undefined;
   gender: string | undefined;
-  phone_number: number | undefined;
-  social_insurance_number: number | undefined;
-  date_of_birth: number | undefined;
+  phone_number: string | undefined;
+  social_insurance_number: string | undefined;
+  date_of_birth: string | undefined;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallServices } from 'src/services/api-call-services';
-import { Users } from 'src/user/users';
+import { Users } from 'src/interfaces/users';
 import { ColDef } from 'ag-grid-community';
 
 @Component({
@@ -9,7 +9,7 @@ import { ColDef } from 'ag-grid-community';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  users: Users[] = [];
+  rowData: Users[] = [];
 
   columnDefs: ColDef[] = [
     { headerName: 'First Name', field: 'first_name' },
@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
     { headerName: 'Gender', field: 'gender' },
     { headerName: 'Phone Number', field: 'phone_number' },
     { headerName: 'Social Insurance Number', field: 'social_insurance_number' },
-    { headerName: 'Date of Birth', field: 'dateOfBirth' },
+    { headerName: 'Date of Birth', field: 'date_of_birth' },
   ];
 
   defaultColDef = {
@@ -36,9 +36,9 @@ export class UsersComponent implements OnInit {
 
   getUsersData() {
     this.apiCallServices.getUsersData().subscribe(
-      (response: Users[]) => {
-        this.users = response;
-        console.log(this.users);
+      (response) => {
+        this.rowData = response;
+        console.log(this.rowData);
       },
       (error) => {
         console.error('Hiba történt az API hívás során:', error);
