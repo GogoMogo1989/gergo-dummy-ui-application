@@ -1,4 +1,11 @@
 <header>
-    <app-menubar></app-menubar>
+  <app-menubar></app-menubar>
 </header>
-<p>home works!</p>
+<div
+  class="avatarClass"
+  *ngFor="let datas of users | slice : 0 : 5"
+  (click)="onImageClick(datas)"
+>
+  <h3>{{ datas.username }}</h3>
+  <img [src]="datas.avatar" alt="" />
+</div>

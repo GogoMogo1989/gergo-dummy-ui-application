@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiCallServices {
-  private apiUrl = 'https://random-data-api.com/api/v2/users?size=20&is_xml=true';
+  private apiUrl = 'https://random-data-api.com/api/v2/users?size=20&is';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUsersData(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);

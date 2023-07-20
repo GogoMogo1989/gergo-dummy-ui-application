@@ -28,6 +28,11 @@ export class UsersComponent implements OnInit {
     filter: true,
   };
 
+  gridOptions: any = {
+    pagination: true,
+    paginationPageSize: 10,
+  };
+
   constructor(private apiCallServices: ApiCallServices) {}
 
   ngOnInit() {
