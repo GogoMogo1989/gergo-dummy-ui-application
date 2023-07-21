@@ -10,7 +10,7 @@ import { Users } from 'src/interfaces/users';
 export class AvatarDialogComponent implements OnInit {
   user: Users;
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: Users) {
+  constructor(@Inject(MAT_DIALOG_DATA) data: Users) {
     this.user = data;
   }
 

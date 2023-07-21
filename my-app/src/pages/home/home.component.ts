@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCallServices } from 'src/services/api-call-services';
 import { Users } from 'src/interfaces/users';
-import { AvatarDataServices } from 'src/services/avatar-data-services';
+import { AvatarDataServices } from 'src/services/avatar-dialog-service';
 
 @Component({
   selector: 'app-home',

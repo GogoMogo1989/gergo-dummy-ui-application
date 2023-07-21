@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ApiCallServices } from 'src/services/api-call-services';
 import { Users } from 'src/interfaces/users';
 import { ColDef } from 'ag-grid-community';
+import { MatDialog } from '@angular/material/dialog';
+import { AddUserDialogComponent } from 'src/dialogs/add-user-dialog/add-user-dialog.component';
 
 @Component({
   selector: 'app-users',
@@ -33,7 +35,11 @@ export class UsersComponent implements OnInit {
     paginationPageSize: 10,
   };
 
-  constructor(private apiCallServices: ApiCallServices) {}
+  constructor(
+    private apiCallServices: ApiCallServices,
+    private dialog: MatDialog,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.getUsersData();
@@ -43,11 +49,21 @@ export class UsersComponent implements OnInit {
     this.apiCallServices.getUsersData().subscribe(
       (response) => {
         this.rowData = response;
-        console.log(this.rowData);
       },
       (error) => {
         console.error('Hiba történt az API hívás során:', error);
       }
     );
+  }
+
+  openAddUserDialog(): void {
+    const dialogRef = this.dialog.open(AddUserDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result: Users) => {
+      if (result) {
+        this.rowData.unshift(result);
+        console.log(this.rowData);
+      }
+    });
   }
 }
