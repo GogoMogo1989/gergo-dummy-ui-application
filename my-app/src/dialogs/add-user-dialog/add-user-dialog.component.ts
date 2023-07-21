@@ -46,13 +46,10 @@ export class AddUserDialogComponent {
     );
     this.userForm.controls['date_of_birth'].valueChanges.subscribe(
       (newValue) => {
-        if (newValue && typeof newValue === 'string') {
-          const date = new Date(newValue);
-          if (!isNaN(date.getTime())) {
-            this.userForm.controls['date_of_birth'].setValue(
-              this.formatDateToYYYYMMDD(date)
-            );
-          }
+        if (newValue instanceof Date) {
+          this.userForm.controls['date_of_birth'].setValue(
+            this.formatDateToYYYYMMDD(newValue)
+          );
         }
       }
     );
