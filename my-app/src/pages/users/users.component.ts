@@ -66,6 +66,7 @@ export class UsersComponent implements OnInit {
       if (result) {
         this.rowData.unshift(result);
         this.gridOptions.api.setRowData(this.rowData);
+        console.log(this.rowData);
       }
     });
   }

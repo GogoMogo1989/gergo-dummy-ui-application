@@ -13,7 +13,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-/* import { MatMomentDateModule } from '@angular/material-moment-adapter'; */
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppComponent } from './app.component';

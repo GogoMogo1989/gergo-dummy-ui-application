@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Users } from 'src/interfaces/users';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
   FormBuilder,
   FormGroup,
@@ -8,11 +8,14 @@ import {
   ValidatorFn,
   AbstractControl,
 } from '@angular/forms';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { CUSTOM_DATE_FORMATS } from 'src/services/date';
 
 @Component({
   selector: 'app-add-user-dialog',
   templateUrl: './add-user-dialog.component.html',
   styleUrls: ['./add-user-dialog.component.scss'],
+  providers: [{ provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }],
 })
 export class AddUserDialogComponent {
   userForm!: FormGroup;
@@ -40,6 +43,18 @@ export class AddUserDialogComponent {
         termsAndConditions: [false, Validators.requiredTrue],
       },
       { validators: this.passwordMatchValidator }
+    );
+    this.userForm.controls['date_of_birth'].valueChanges.subscribe(
+      (newValue) => {
+        if (newValue && typeof newValue === 'string') {
+          const date = new Date(newValue);
+          if (!isNaN(date.getTime())) {
+            this.userForm.controls['date_of_birth'].setValue(
+              this.formatDateToYYYYMMDD(date)
+            );
+          }
+        }
+      }
     );
   }
 
@@ -74,4 +89,19 @@ export class AddUserDialogComponent {
       return { passwordMismatch: true };
     }
   };
+
+  formatDateToYYYYMMDD(date: Date): string {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const formattedDate = `${year}-${this.padNumber(month)}-${this.padNumber(
+      day
+    )}`;
+    return formattedDate;
+  }
+
+  padNumber(num: number): string {
+    return num.toString().padStart(2, '0');
+  }
 }
