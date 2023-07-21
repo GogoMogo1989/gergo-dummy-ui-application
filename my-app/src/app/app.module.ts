@@ -11,6 +11,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+/* import { MatMomentDateModule } from '@angular/material-moment-adapter'; */
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppComponent } from './app.component';
 import { MenubarComponent } from 'src/pages/menubar/menubar.component';
@@ -42,6 +46,9 @@ import { AddUserDialogComponent } from 'src/dialogs/add-user-dialog/add-user-dia
     NoopAnimationsModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
