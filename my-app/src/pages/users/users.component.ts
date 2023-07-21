@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiCallServices } from 'src/services/api-call-services';
 import { Users } from 'src/interfaces/users';
 import { ColDef } from 'ag-grid-community';
@@ -33,12 +33,14 @@ export class UsersComponent implements OnInit {
   gridOptions: any = {
     pagination: true,
     paginationPageSize: 10,
+    onGridReady: (params: any) => {
+      this.gridOptions.api = params.api;
+    },
   };
 
   constructor(
     private apiCallServices: ApiCallServices,
-    private dialog: MatDialog,
-    private changeDetectorRef: ChangeDetectorRef
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -49,6 +51,7 @@ export class UsersComponent implements OnInit {
     this.apiCallServices.getUsersData().subscribe(
       (response) => {
         this.rowData = response;
+        console.log(this.rowData);
       },
       (error) => {
         console.error('Hiba történt az API hívás során:', error);
@@ -62,7 +65,7 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: Users) => {
       if (result) {
         this.rowData.unshift(result);
-        console.log(this.rowData);
+        this.gridOptions.api.setRowData(this.rowData);
       }
     });
   }

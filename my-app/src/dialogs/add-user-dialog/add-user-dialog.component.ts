@@ -25,6 +25,7 @@ export class AddUserDialogComponent {
       phone_number: [''],
       social_insurance_number: [''],
       date_of_birth: [''],
+      password: [''],
     });
   }
 

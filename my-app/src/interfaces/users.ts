@@ -8,4 +8,5 @@ export class Users {
   social_insurance_number: string | undefined;
   date_of_birth: string | undefined;
   avatar: string | undefined;
+  password: string | undefined;
 }

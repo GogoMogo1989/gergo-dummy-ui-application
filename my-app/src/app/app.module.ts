@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppComponent } from './app.component';
 import { MenubarComponent } from 'src/pages/menubar/menubar.component';
@@ -40,6 +41,7 @@ import { AddUserDialogComponent } from 'src/dialogs/add-user-dialog/add-user-dia
     MatInputModule,
     NoopAnimationsModule,
     MatDialogModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
