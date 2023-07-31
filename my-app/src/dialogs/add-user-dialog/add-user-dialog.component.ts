@@ -44,19 +44,18 @@ export class AddUserDialogComponent {
       },
       { validators: this.passwordMatchValidator }
     );
-    this.userForm.controls['date_of_birth'].valueChanges.subscribe(
-      (newValue) => {
-        if (newValue instanceof Date) {
-          this.userForm.controls['date_of_birth'].setValue(
-            this.formatDateToYYYYMMDD(newValue)
-          );
-        }
-      }
-    );
   }
 
   onSave(): void {
     if (this.userForm.valid && this.userForm.get('termsAndConditions')?.value) {
+      const dateOfBirthControl = this.userForm.get('date_of_birth');
+      if (dateOfBirthControl) {
+        const dateOfBirthValue = dateOfBirthControl.value;
+        if (dateOfBirthValue instanceof Date) {
+          const formattedDate = this.formatDateToYYYYMMDD(dateOfBirthValue);
+          dateOfBirthControl.setValue(formattedDate);
+        }
+      }
       this.dialogRef.close(this.userForm.value);
     }
   }

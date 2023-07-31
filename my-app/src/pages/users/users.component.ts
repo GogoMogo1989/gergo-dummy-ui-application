@@ -51,7 +51,6 @@ export class UsersComponent implements OnInit {
     this.apiCallServices.getUsersData().subscribe(
       (response) => {
         this.rowData = response;
-        console.log(this.rowData);
       },
       (error) => {
         console.error('Hiba történt az API hívás során:', error);
