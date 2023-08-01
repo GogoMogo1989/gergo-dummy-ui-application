@@ -5,13 +5,14 @@ import { HomeComponent } from 'src/pages/home/home.component';
 import { UsersComponent } from 'src/pages/users/users.component';
 
 const routes: Routes = [
-  {path: 'menubar', component: MenubarComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'home', component: HomeComponent}
+  { path: 'menubar', component: MenubarComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
