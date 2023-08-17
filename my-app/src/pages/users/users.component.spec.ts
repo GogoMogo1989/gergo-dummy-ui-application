@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersComponent } from './users.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -130,14 +130,14 @@ describe('UsersComponent', () => {
     expect(buttonSpyCalled).toHaveBeenCalled();
   });
 
-  it('should fetch user data correctly', () => {
+  it('should ngOnInit had started to getUsersData()', () => {
     const getUserData = spyOn(component, 'getUsersData');
     component.ngOnInit();
     fixture.detectChanges();
     expect(getUserData).toHaveBeenCalled();
   });
 
-  it('should getUsersData have used to fill rowData', () => {
+  it('should getUsersData() had used to fill rowData', () => {
     component.getUsersData();
     expect(component.rowData.length).toEqual(6);
   });
