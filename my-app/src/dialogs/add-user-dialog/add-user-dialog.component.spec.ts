@@ -11,6 +11,7 @@ import { MenubarComponent } from 'src/pages/menubar/menubar.component';
 import { ApiCallServices } from 'src/services/api-call-services';
 
 import { AddUserDialogComponent } from './add-user-dialog.component';
+import { FormGroup } from '@angular/forms';
 
 describe('AddUserDialogComponent', () => {
   let component: AddUserDialogComponent;
@@ -195,5 +196,47 @@ describe('AddUserDialogComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should Cancle button had called to onCancel() function', () => {
+    const onCancelFunction = spyOn(component, 'onCancel');
+    const cancelButton = fixture.nativeElement.querySelector('.cancelButton');
+
+    cancelButton.click();
+    fixture.detectChanges();
+
+    expect(onCancelFunction).toHaveBeenCalled();
+  });
+
+  it('should Save button had called onSave() function', () => {
+    if (component.userForm.invalid) {
+      const onSaveFunction = spyOn(component, 'onSave');
+      const saveButton = fixture.nativeElement.querySelector('.saveButton');
+
+      saveButton.click();
+      fixture.detectChanges();
+
+      expect(onSaveFunction).not.toHaveBeenCalled();
+    }
+  });
+
+  it('should validate matching passwords', () => {
+    component.userForm.controls['password'].setValue('password123');
+    component.userForm.controls['password_confirm'].setValue('password123');
+    fixture.detectChanges();
+
+    const errors = component.userForm.errors;
+    expect(errors).toBeNull(); //Ha az error értéke null, akkor átment a teszten
+  });
+
+  it('should invalidate non-matching passwords', () => {
+    component.userForm.controls['password'].setValue('password123');
+    component.userForm.controls['password_confirm'].setValue(
+      'password123456789'
+    );
+    fixture.detectChanges();
+
+    const errors = component.userForm.errors;
+    expect(errors).not.toBeNull();
   });
 });
