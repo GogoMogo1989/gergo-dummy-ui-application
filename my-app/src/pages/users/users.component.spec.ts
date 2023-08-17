@@ -94,7 +94,8 @@ describe('UsersComponent', () => {
       },
     ];
 
-    mockPostService = jasmine.createSpyObj(['getUserData']);
+    mockPostService = jasmine.createSpyObj(['getUsersData']);
+    mockPostService.getUsersData.and.returnValue(of(POSTS));
 
     TestBed.configureTestingModule({
       declarations: [UsersComponent, MenubarComponent],
@@ -114,7 +115,6 @@ describe('UsersComponent', () => {
     fixture = TestBed.createComponent(UsersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    mockPostService.getUsersData.and.returnValue(of(POSTS));
   });
 
   it('should create', () => {
