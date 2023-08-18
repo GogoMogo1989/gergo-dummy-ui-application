@@ -114,6 +114,7 @@ describe('UsersComponent', () => {
     });
     fixture = TestBed.createComponent(UsersComponent);
     component = fixture.componentInstance;
+    component.gridOptions = { api: { setRowData: () => {} } };
     fixture.detectChanges();
   });
 
@@ -140,5 +141,15 @@ describe('UsersComponent', () => {
   it('should getUsersData() had used to fill rowData', () => {
     component.getUsersData();
     expect(component.rowData.length).toEqual(6);
+  });
+
+  it('should addRowData() correctly add a new row', () => {
+    const originalRowDataLength = component.rowData.length;
+
+    component.form.setValue(POSTS[0]);
+    component.addRowData();
+    fixture.detectChanges();
+
+    expect(component.rowData.length).toEqual(originalRowDataLength + 1);
   });
 });

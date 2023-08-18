@@ -1,4 +1,6 @@
-/* import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AvatarDialogComponent } from './avatar-dialog.component';
 
@@ -8,7 +10,14 @@ describe('AvatarDialogComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AvatarDialogComponent]
+      declarations: [AvatarDialogComponent],
+      imports: [MatDialogModule],
+      providers: [
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {},
+        },
+      ],
     });
     fixture = TestBed.createComponent(AvatarDialogComponent);
     component = fixture.componentInstance;
@@ -19,4 +28,3 @@ describe('AvatarDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 });
- */

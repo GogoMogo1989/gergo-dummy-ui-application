@@ -4,6 +4,7 @@ import { Users } from 'src/interfaces/users';
 import { ColDef } from 'ag-grid-community';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserDialogComponent } from 'src/dialogs/add-user-dialog/add-user-dialog.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -12,6 +13,7 @@ import { AddUserDialogComponent } from 'src/dialogs/add-user-dialog/add-user-dia
 })
 export class UsersComponent implements OnInit {
   rowData: Users[] = [];
+  form!: FormGroup;
 
   columnDefs: ColDef[] = [
     { headerName: 'First Name', field: 'first_name' },
@@ -40,11 +42,28 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private apiCallServices: ApiCallServices,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     this.getUsersData();
+    this.Form();
+  }
+
+  Form() {
+    this.form = this.formBuilder.group({
+      first_name: [''],
+      last_name: [''],
+      username: [''],
+      email: [''],
+      gender: [''],
+      phone_number: [''],
+      social_insurance_number: [''],
+      date_of_birth: [''],
+      avatar: [''],
+      password: [''],
+    });
   }
 
   getUsersData() {
@@ -68,5 +87,14 @@ export class UsersComponent implements OnInit {
         console.log(this.rowData);
       }
     });
+  }
+
+  addRowData(): void {
+    if (this.form.valid) {
+      const newUser: Users = this.form.value;
+      this.rowData.unshift(newUser);
+      this.gridOptions.api.setRowData(this.rowData);
+      this.form.reset();
+    }
   }
 }

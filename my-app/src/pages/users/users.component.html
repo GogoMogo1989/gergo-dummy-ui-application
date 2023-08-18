@@ -16,3 +16,73 @@
 <div class="newButton">
   <button mat-button (click)="openAddUserDialog()">New</button>
 </div>
+
+<div mat-dialog-content class="addNewUser">
+  <form [formGroup]="form">
+    <div class="formData">
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="first_name" required />
+      </mat-form-field>
+    </div>
+
+    <div class="formData">
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" required />
+      </mat-form-field>
+    </div>
+
+    <div class="formData">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required />
+      </mat-form-field>
+    </div>
+
+    <div class="formData">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+
+    <div class="formData">
+      <mat-label>Gender</mat-label>
+      <mat-radio-group color="primary" formControlName="gender">
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+        <mat-radio-button value="other">Other</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="formData">
+      <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phone_number" />
+      </mat-form-field>
+    </div>
+
+    <div class="formData">
+      <mat-form-field appearance="fill">
+        <mat-label>Social Insurance Number</mat-label>
+        <input matInput formControlName="social_insurance_number" />
+      </mat-form-field>
+    </div>
+
+    <div class="formData">
+      <mat-label formControlName="date_of_birth">Date of Birth</mat-label>
+      <input matInput />
+    </div>
+
+    <div class="formData">
+      <mat-form-field appearance="fill">
+        <mat-label formControlName="password">Password</mat-label>
+        <input matInput />
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div class="formButton">
+  <button (click)="addRowData()" mat-button>Save</button>
+</div>

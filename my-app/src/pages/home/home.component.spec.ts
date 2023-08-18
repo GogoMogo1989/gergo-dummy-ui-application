@@ -10,6 +10,7 @@ import { ApiCallServices } from 'src/services/api-call-services';
 import { Users } from 'src/interfaces/users';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { AvatarDataServices } from 'src/services/avatar-dialog-service';
 
 describe('HomeComponent', () => {
   let POSTS: Users[];
